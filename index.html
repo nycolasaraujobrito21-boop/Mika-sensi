@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENU MIKA SENSI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roxo: '#6A0DAD',
+                        roxoClaro: '#C77DFF',
+                        roxoEscuro: '#3C096C',
+                    },
+                    fontFamily: {
+                        tech: ['Orbitron', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #121212; }
+        .glow { box-shadow: 0 0 15px #C77DFF, 0 0 30px #6A0DAD; }
+        .btn-toggle { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen font-tech bg-black">
+
+    <!-- TELA DE LOGIN -->
+    <div id="loginScreen" class="absolute w-full h-full flex items-center justify-center bg-black/90 z-50">
+        <div class="bg-roxoEscuro p-8 rounded-xl border-2 border-roxoClaro glow w-80">
+            <h1 class="text-3xl font-bold text-center text-roxoClaro mb-6">PAINEL MIKA</h1>
+            <input type="text" id="user" value="Mika" class="w-full p-3 mb-4 rounded bg-roxo text-white border border-roxoClaro text-center text-xl" readonly>
+            <input type="password" id="pass" value="Sensi" class="w-full p-3 mb-6 rounded bg-roxo text-white border border-roxoClaro text-center text-xl" readonly>
+            <button onclick="entrar()" class="w-full p-4 bg-roxoClaro hover:bg-white text-roxoEscuro font-bold rounded-xl text-xl transition-all glow">ENTRAR</button>
+        </div>
+    </div>
+
+    <!-- MENU PRINCIPAL -->
+    <div id="mainMenu" class="hidden relative w-80 bg-roxoEscuro p-6 rounded-xl border-2 border-roxoClaro glow">
+        
+        <h2 class="text-2xl font-bold text-center text-roxoClaro mb-6">CONFIGURAÇÕES</h2>
+
+        <!-- BOTAO MIRA -->
+        <div class="mb-6">
+            <p class="text-white text-center mb-2">ATIVAR MIRA</p>
+            <div class="flex bg-roxo rounded-lg p-1">
+                <button id="btnOff" onclick="toggleMira(false)" class="w-1/2 p-3 rounded bg-red-600 text-white font-bold transition-all">DESATIVADO</button>
+                <button id="btnOn" onclick="toggleMira(true)" class="w-1/2 p-3 rounded text-roxoClaro font-bold transition-all">ATIVADO</button>
+            </div>
+            <p class="text-xs text-center text-green-400 mt-2">✨ Modo: Sem Puxada | Gruda na Cabeça</p>
+        </div>
+
+        <!-- OPÇÕES AIMBOT -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-roxo p-3 rounded-lg border border-roxoClaro">
+                <input type="checkbox" id="aimhead" class="mr-2">
+                <label for="aimhead" class="text-white font-bold">🎯 AIMBOT HEAD</label>
+            </div>
+            <div class="bg-roxo p-3 rounded-lg border border-roxoClaro">
+                <input type="checkbox" id="aimbody" class="mr-2">
+                <label for="aimbody" class="text-white font-bold">🛡️ AIMBOT BODY</label>
+            </div>
+        </div>
+
+        <!-- BOTAO INJETAR -->
+        <button onclick="injetar()" class="w-full p-5 bg-roxoClaro hover:bg-white text-roxoEscuro font-black text-xl rounded-xl glow transition-all transform hover:scale-105">
+            💉 INJETAR E ABRIR
+        </button>
+
+        <p id="status" class="text-center text-yellow-400 mt-4 text-sm">Aguardando Injeção...</p>
+    </div>
+
+<script>
+    function entrar() {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainMenu').classList.remove('hidden');
+    }
+
+    function toggleMira(ativo) {
+        if(ativo) {
+            document.getElementById('btnOn').classList.add('bg-green-500', 'text-white');
+            document.getElementById('btnOff').classList.remove('bg-red-600');
+        } else {
+            document.getElementById('btnOff').classList.add('bg-red-600');
+            document.getElementById('btnOn').classList.remove('bg-green-500');
+        }
+    }
+
+    function injetar() {
+        let status = document.getElementById('status');
+        status.innerHTML = "🔄 Injetando...";
+        status.className = "text-center text-blue-400 mt-4 text-sm animate-pulse";
+        
+        setTimeout(() => {
+            status.innerHTML = "✅ SUCESSO! Abrindo Free Fire...";
+            status.className = "text-center text-green-400 mt-4 text-sm font-bold";
+            alert("💉 Injeção Completa!\nMira setada para GRUDAR NA CABEÇA sem puxar!\nAbrindo jogo...");
+            // Aqui seria o comando para abrir o app
+        }, 1500);
+    }
+</script>
+</body>
+</html>
